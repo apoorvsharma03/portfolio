@@ -228,6 +228,14 @@ footer .socials{
     padding: 10px;
 }   
 
+.tell_me{
+    border: 1px solid #d8d5d5;
+    background-color: #f6f2f2;
+    padding: 5px;
+    color: #4b4b4b;
+    border-radius: 5px;
+}
+
 @media screen and (max-width: 450px){
     header div{
         display: none;

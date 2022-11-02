@@ -14,6 +14,7 @@ header a{
     color: rgb(232, 231, 231);
 }
 
+
 header{
     background-image: linear-gradient(to right, rgb(52,52,52), rgb(36,36,36));
     height: 4em;
@@ -29,10 +30,11 @@ header{
 header div{
     margin-left: 5vw;
 }
+
 .nav{
     width: 15em;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     margin-right: 18vw;
 }
 
@@ -41,6 +43,13 @@ header div{
     font-size: 1em;
     font-weight: 500;
     margin-right: 2vw;
+}
+
+#mode_button{
+    width: 1.5em;
+    background-color: rgb(187, 187, 187);
+    border-radius: 100px;
+    cursor: pointer;
 }
 
 .banner{
@@ -236,14 +245,20 @@ footer .socials{
     border-radius: 5px;
 }
 
+#litsoclogo{
+    border: 1px solid white;
+    border-radius: 50px;
+}
+
 @media screen and (max-width: 450px){
-    header div{
-        display: none;
+    header div a{
+        opacity: 0%;
     }
 
     header{
         display: flex;
         justify-content: center;
+        overflow: hidden;
     }
 
     .poster{

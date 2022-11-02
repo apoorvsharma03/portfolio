@@ -1,11 +1,26 @@
 setInterval(gettime, 1000);
 
+var flag = 0;
 function gettime(){
     var time = new Date();
     var hr = time.getHours();
     var min = time.getMinutes();
     var sec = time.getSeconds();
     var ses = 'AM';
+
+    if((hr < 6 || hr >= 18) && flag == 0){
+        document.getElementById('body').style.backgroundColor = "#1f1f1f"
+        document.getElementById('body').style.color = "whitesmoke"
+        document.getElementById('time').style.backgroundColor = "#1f1f1f"
+        document.getElementById('litsoclogo').style.backgroundColor = "white"
+        flag = 1
+    }
+    else if((hr >= 6 && hr < 18 && flag == 1)){
+        document.getElementById('body').style.backgroundColor = "white"
+        document.getElementById('body').style.color = "#4b4b4b"
+        document.getElementById('time').style.backgroundColor = "#f6f2f2"
+        flag = 0;
+    }
 
     if(hr > 11){
         ses = 'PM';
@@ -33,26 +48,49 @@ function gettime(){
     document.getElementById('ses').innerHTML = ses;
 }
 
+document.getElementById('mode_button').addEventListener('click', () =>{
+    console.log(flag)
+    if(flag == 2){
+        dark_mode();
+    }
+    else{
+        light_mode();
+    }
+});
+
+function dark_mode(){
+    document.getElementById('body').style.backgroundColor = "#1f1f1f"
+    document.getElementById('body').style.color = "whitesmoke"
+    document.getElementById('time').style.backgroundColor = "#1f1f1f"
+    document.getElementById('litsoclogo').style.backgroundColor = "white"
+    flag = 3;
+}
+
+function light_mode(){
+    document.getElementById('body').style.backgroundColor = "white"
+    document.getElementById('body').style.color = "#4b4b4b"
+    document.getElementById('time').style.backgroundColor = "#f6f2f2"
+    flag = 2;
+}
 
 function getinfo(){
     var handle = document.getElementById('cfhandle').value;
     var link = 'https://codeforces.com/api/user.rating?handle=' + handle;
 
-    var flag = 1;
+    var check = 1;
     var rating;
     fetch(link)
     .then(res => {
         if(res.ok == false){
-            flag = false;
+            check = false;
             alert("Invalid CodeForces Handle!");
             return;
         }
     }).then(function(){
-        if(flag == true){
+        if(check == true){
             fetch(link)
             .then(res => res.json())
             .then(data => {
-                console.log(data.status);
                 if(data.status == false){
                     alert("Invalid Handle!");
                 }

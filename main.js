@@ -49,7 +49,6 @@ function gettime(){
 }
 
 document.getElementById('mode_button').addEventListener('click', () =>{
-    console.log(flag)
     if(flag == 2){
         dark_mode();
     }

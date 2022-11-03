@@ -1,6 +1,7 @@
 setInterval(gettime, 1000);
 
 var flag = 0;
+var press = 0;
 function gettime(){
     var time = new Date();
     var hr = time.getHours();
@@ -19,7 +20,12 @@ function gettime(){
         document.getElementById('body').style.backgroundColor = "white"
         document.getElementById('body').style.color = "#4b4b4b"
         document.getElementById('time').style.backgroundColor = "#f6f2f2"
-        flag = 0;
+        if(press = 0){
+            flag = 0;
+        }
+        else{
+            flag = 2;
+        }
     }
 
     if(hr > 11){
@@ -49,7 +55,11 @@ function gettime(){
 }
 
 document.getElementById('mode_button').addEventListener('click', () =>{
-    if(flag == 2){
+    press = 1;
+    if(flag == 0 && press == 1){
+        dark_mode();
+    }
+    else if(flag == 2){
         dark_mode();
     }
     else{

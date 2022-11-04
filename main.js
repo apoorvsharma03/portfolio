@@ -1,32 +1,11 @@
 setInterval(gettime, 1000);
 
-var flag = 0;
-var press = 0;
 function gettime(){
     var time = new Date();
     var hr = time.getHours();
     var min = time.getMinutes();
     var sec = time.getSeconds();
     var ses = 'AM';
-
-    if((hr < 6 || hr >= 18) && flag == 0){
-        document.getElementById('body').style.backgroundColor = "#1f1f1f"
-        document.getElementById('body').style.color = "whitesmoke"
-        document.getElementById('time').style.backgroundColor = "#1f1f1f"
-        document.getElementById('litsoclogo').style.backgroundColor = "white"
-        flag = 1
-    }
-    else if((hr >= 6 && hr < 18 && flag == 1)){
-        document.getElementById('body').style.backgroundColor = "white"
-        document.getElementById('body').style.color = "#4b4b4b"
-        document.getElementById('time').style.backgroundColor = "#f6f2f2"
-        if(press = 0){
-            flag = 0;
-        }
-        else{
-            flag = 2;
-        }
-    }
 
     if(hr > 11){
         ses = 'PM';
@@ -54,12 +33,14 @@ function gettime(){
     document.getElementById('ses').innerHTML = ses;
 }
 
+var flag = 0;
+
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    flag = 1;
+}
+
 document.getElementById('mode_button').addEventListener('click', () =>{
-    press = 1;
-    if(flag == 0 && press == 1){
-        dark_mode();
-    }
-    else if(flag == 2){
+    if(flag == 0){
         dark_mode();
     }
     else{
@@ -69,17 +50,17 @@ document.getElementById('mode_button').addEventListener('click', () =>{
 
 function dark_mode(){
     document.getElementById('body').style.backgroundColor = "#1f1f1f"
-    document.getElementById('body').style.color = "whitesmoke"
+    document.getElementById('body').style.color = "rgb(218, 218, 218)"
     document.getElementById('time').style.backgroundColor = "#1f1f1f"
     document.getElementById('litsoclogo').style.backgroundColor = "white"
-    flag = 3;
+    flag = 1;
 }
 
 function light_mode(){
     document.getElementById('body').style.backgroundColor = "white"
     document.getElementById('body').style.color = "#4b4b4b"
     document.getElementById('time').style.backgroundColor = "#f6f2f2"
-    flag = 2;
+    flag = 0;
 }
 
 function getinfo(){

@@ -81,6 +81,7 @@ function getinfo(){
             fetch(link)
             .then(res => res.json())
             .then(data => {
+                console.log(data);
                 if(data.status == false){
                     alert("Invalid Handle!");
                 }
@@ -138,6 +139,37 @@ function getinfo(){
                     }
                 }
             })
+            .catch(err => console.log(err));
         }
     })
-}       
+}
+
+const buttons = document.querySelectorAll("[data-button]")
+
+buttons.forEach(button => {
+    button.addEventListener("click", () => {
+        const value = button.dataset.button;
+        var offset;
+        if(value === "next"){
+            offset = 1;
+        }
+        else{
+            offset = -1;
+        }
+        console.log(offset);
+        const slides = button
+            .closest("[data-slideshow]")
+            .querySelector("[data-slides]");
+
+        const activeSlide = slides.querySelector("[data-active]")
+
+        var newindex = [...slides.children].indexOf(activeSlide) + offset;
+
+        if (newindex < 0) newindex = slides.children.length - 1
+        if (newindex >= slides.children.length) newindex = 0
+        
+        slides.children[newindex].dataset.active = true
+        delete activeSlide.dataset.active
+    })
+
+})

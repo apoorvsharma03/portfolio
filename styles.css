@@ -103,6 +103,7 @@ main{
     width: 4em;
     min-width: 65px;
     height: auto;
+    max-height: 75px;
     margin: 2vh;
 }
 

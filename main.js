@@ -156,7 +156,6 @@ buttons.forEach(button => {
         else{
             offset = -1;
         }
-        console.log(offset);
         const slides = button
             .closest("[data-slideshow]")
             .querySelector("[data-slides]");
@@ -173,3 +172,17 @@ buttons.forEach(button => {
     })
 
 })
+
+setInterval(autoscroll, 1500);
+function autoscroll(){
+    const slides = document.querySelector("[data-slides]")
+    const activeSlide = slides.querySelector("[data-active]")
+    
+    newindex = [...slides.children].indexOf(activeSlide) + 1;
+
+    if (newindex < 0) newindex = slides.children.length - 1
+    if (newindex >= slides.children.length) newindex = 0
+
+    slides.children[newindex].dataset.active = true
+    delete activeSlide.dataset.active
+}

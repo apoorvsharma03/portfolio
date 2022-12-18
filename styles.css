@@ -234,8 +234,9 @@ footer{
     background-image: linear-gradient(to right, rgb(10, 184, 184), darkcyan);
     width: 100%;
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto auto auto auto;
     justify-content: center;
+    align-items: center;
 }
 
 footer .socials{
@@ -341,3 +342,14 @@ footer .socials{
         background-color: whitesmoke;
     }
   }
+
+.divline{
+    width: 2px;
+    height: 45px;
+    max-height: 45px;
+    background-color: black;
+}
+
+.email{
+    color: black;
+}
